@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "longdescription": {
+      "type": "richtext"
+    },
+    "courseimage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "regularprice": {
+      "type": "decimal",
+      "required": true,
+      "max": 50000,
+      "min": 0,
+      "default": 0
+    },
+    "shortdescription": {
+      "type": "richtext",
+      "required": true,
+      "maxLength": 220
+    },
+    "saleprice": {
+      "type": "decimal",
+      "required": true,
+      "min": 40,
+      "default": 40
+    },
+    "slud": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "courses"
+    },
+    "units": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::unit.unit"
+    },
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "courses"
+    }
+  }
+}
